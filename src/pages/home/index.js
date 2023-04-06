@@ -12,7 +12,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { Logo } from "../../components/logo";
 import { FoodList } from "../../components/foodList";
 import api from '../../services/api'
+import {useNavigation} from '@react-navigation/native'; 
+import {Text as MotiText} from 'moti'
+
 export function Home() {
+  const navigation = useNavigation(); 
 const [inputValue, setInputValue] = useState(''); 
 const [foods, setFoods] = useState([]); 
 
@@ -26,6 +30,10 @@ useEffect(() => {
 }, [])
 
 function handleSearch () {
+  if (inputValue === '') return; 
+  let input = inputValue; 
+  setInputValue(''); 
+  navigation.navigate('Search', {name: input}); 
     console.log('voce clicou', inputValue ); 
 } 
 
@@ -33,8 +41,17 @@ function handleSearch () {
     <SafeAreaView style={styles.container}>
       <Logo />
 
-      <Text style={styles.title}>Encontre a receita</Text>
-      <Text style={styles.title}>que combine com você</Text>
+      <MotiText style={styles.title}
+      from={{opacity: 0, translateY: 15}}
+      animate={{opacity: 1, translateY: 0 }}
+      transition={{delay: 100, type: 'timing', duration: 650}}
+      >Encontre a receita</MotiText>
+
+      <MotiText style={styles.title}
+          from={{opacity: 0, translateY: 18}}
+          animate={{opacity: 1, translateY: 0 }}
+          transition={{delay: 200, type: 'timing', duration: 850}}
+      >que combine com você</MotiText>
 
       <View style={styles.form}>
         <TextInput 
