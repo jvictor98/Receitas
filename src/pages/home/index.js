@@ -34,7 +34,7 @@ function handleSearch () {
   let input = inputValue; 
   setInputValue(''); 
   navigation.navigate('Search', {name: input}); 
-    console.log('voce clicou', inputValue ); 
+    console.log('voce clicou Teste1', inputValue ); 
 } 
 
   return (
